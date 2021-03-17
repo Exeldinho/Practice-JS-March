@@ -17,4 +17,5 @@ bind(person2, logPerson)()
 
 Document.getElementById('p').innerHTML = 'aaa'
 
-
+//евент луп
+//замикання
