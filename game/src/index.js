@@ -50,12 +50,20 @@ class Game extends React.Component {
             history: [{
                 squares: Array(9).fill(null)
             }],
-            xIsNext: true
+            xIsNext: true,
+            stepNumber: 0
         };
     }
 
+    jumpTo(step) {
+        this.setState({
+            stepNumber: step,
+            xIsNext: (step %2) ===0
+        })
+    }
+
     handleClick(i) {
-        const history = this.state.history;
+        const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
         if (calculateWinner(squares) || squares[i]) {
@@ -66,13 +74,14 @@ class Game extends React.Component {
             history: history.concat([{
             squares: squares
             }]),
+            stepNumber: history.length,
             xIsNext: !this.state.xIsNext
         });
     }
 
     render() {
         const history = this.state.history;
-        const current = history[history.length - 1];
+        const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
@@ -136,3 +145,11 @@ function calculateWinner(squares) {
     }
     return null;
 }
+/**
+1. Відобразіть позицію для кожного ходу у форматі (колонка, рядок) в списку історії ходів. TODO
+2. Виділіть вибраний елемент у спиcку ходів. TODO
+3. Перепишіть компонент Board, використовуючи цикли для створення квадратів, замість написання вручну. TODO
+4. Додайте кнопку, що дозволить сортувати ходи у висхідному чи низхідному порядку. TODO
+5. Коли хтось виграє, встановити підсвічення трьох виграшних клітинок. TODO
+6. Якщо ніхто не виграє, відобразити повідомлення, що повідомляє про нічию. TODO
+ */
