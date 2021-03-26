@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 class Button extends React.Component {
     scream() {
-        alert('All working Fine!');
+        alert("All work's Fine!");
     }
 
     render() {
