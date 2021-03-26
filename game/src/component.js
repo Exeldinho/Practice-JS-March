@@ -1,24 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class QuoteMaker extends React.Component {
-    render() {
-        return (
-            <blockquote>
-                <p>
-                    The world is full of objects, more or less interesting; I do not wish to add any more.
-                </p>
-                <cite>
-                    <a target="_blank"
-                       href="https://en.wikipedia.org/wiki/Douglas_Huebler">
-                        Douglas Huebler
-                    </a>
-                </cite>
-            </blockquote>
-        );
+const fiftyFifty = Math.random() < 0.5;
+
+// New component class starts here:
+class TonightsPlan extends React.Component {
+    render(){
+        let result;
+        if (fiftyFifty == true) {
+            result = "Tonight I'm going out WOOO"
+        }
+        else
+        {
+            result = "Tonight I'm going to bed WOOO"
+        }
+        return(
+            <h1>{result}</h1>
+        )
     }
-};
+}
 
 ReactDOM.render(
-    <QuoteMaker />,
-    document.getElementById('app');
+    <TonightsPlan />,
+    document.getElementById('app')
+)
